@@ -21,11 +21,10 @@ blueprint = Blueprint('api', __name__, url_prefix=URL_PREFIX)
 connect_with_connector()
 
 authorizations = {
-    "Authorization": {
-        "description": "Inputs: Basic \\email\\>",
-        "type": "apiKey",
-        "in": "header",
-        "name": "Authorization",
+    'apikey': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'X-API-KEY'
     }
 }
 
@@ -35,7 +34,7 @@ api = Api(
     version=__version__,
     description=f'Its a service!',
     authorizations=authorizations,
-    security="Authorization",
+    security="apikey",
     catch_all_404s=True,
 )
 
