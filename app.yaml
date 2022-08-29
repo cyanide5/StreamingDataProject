@@ -3,7 +3,7 @@ entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
   INSTANCE_UNIX_SOCKET: /cloudsql/majestic-trail-36070:us-central1:streaming-data-project
-  INSTANCE_CONNECTION_NAME: majestic-trail-36070:us-central1:streaming-data-project
+  INSTANCE_CONNECTION_NAME: majestic-trail-360708:us-central1:streamingpostgres
   DB_USER: streaming_admin
   DB_PASS: password
   DB_NAME: streaming_services
