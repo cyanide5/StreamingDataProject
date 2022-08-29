@@ -6,4 +6,4 @@ env_variables:
   INSTANCE_CONNECTION_NAME: majestic-trail-360708:us-central1:streamingpostgres
   DB_USER: streamingpostgres
   DB_PASS: password
-  DB_NAME: streaming_services
+  DB_NAME: streaming_services_prod

@@ -16,6 +16,6 @@ ENV INSTANCE_UNIX_SOCKET: /cloudsql/majestic-trail-36070:us-central1:streaming-d
 ENV INSTANCE_CONNECTION_NAME: majestic-trail-360708:us-central1:streamingpostgres
 ENV DB_USER: streamingpostgres
 ENV DB_PASS: password
-ENV DB_NAME: streaming_services
+ENV DB_NAME: streaming_services_prod
 
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
