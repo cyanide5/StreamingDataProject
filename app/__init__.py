@@ -14,17 +14,28 @@ from connect import connect_with_connector
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
-URL_PREFIX = "/xStreamServices"
+URL_PREFIX = "/NetflixDataProject"
 apidoc.url_prefix = URL_PREFIX
 blueprint = Blueprint('api', __name__, url_prefix=URL_PREFIX)
 
 connect_with_connector()
+
+authorizations = {
+    "Authorization": {
+        "description": "Inputs: Basic \\email\\>",
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+    }
+}
 
 api = Api(
     blueprint,
     title="Video Streaming Microservices",
     version=__version__,
     description=f'Its a service!',
+    authorizations=authorizations,
+    security="Authorization",
     catch_all_404s=True,
 )
 
