@@ -12,6 +12,7 @@ parser.add_argument(
 )
 
 
+# these only exist to show that the api can be expanded
 @api.response(200, "You did it!")
 @api.response(400, "Unsupported request")
 class TitleResource(Resource):
@@ -31,4 +32,5 @@ class TitleResource(Resource):
         return
 
 
+# a different way og doing things..
 api.add_resource(TitleResource, '/title/details/')

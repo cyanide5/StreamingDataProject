@@ -2,10 +2,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String
 from sqlalchemy_serializer import SerializerMixin
 
-
 Base = declarative_base()
 
 
+# given more time i would have parsed the data more
+# then seperated it into 2 tables (netflix_titles, netflix_actors) and build many to many relationships..
 class Netflix(Base, SerializerMixin):
     __tablename__ = 'netflix_titles'
 

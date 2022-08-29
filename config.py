@@ -3,6 +3,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
+# this was here to connect to my local instance of postgres
+# i was originally using a database.ini file
+# however, that stopped working and i didn't want to invest time into fixing it
 
 host = 'localhost'
 database = 'streaming_services'
