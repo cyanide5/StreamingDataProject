@@ -1,9 +1,12 @@
-FROM python:3.9-slim
+FROM python:3.8.3-slim
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN apk add postgresql-dev gcc python3-dev musl-dev
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2 \
+
 
 RUN pip install --upgrade pip
 RUN pip install pipenv
