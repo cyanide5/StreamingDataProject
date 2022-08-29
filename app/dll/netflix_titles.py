@@ -1,25 +1,32 @@
+import sqlalchemy.exc
+from sqlalchemy import func
+
 from db import Session
 from models import Netflix
+from flask_restx import abort
 
 session = Session()
 
 
 def get_details(title):
-    query = session.query(Netflix).filter(Netflix.title == title)
+    query = session.query(Netflix).filter(func.lower(Netflix.title).contains(func.lower(title))).limit(100)
+    result = query.all()  # .first()
 
-    result = query.one()
-    resp = {
-        'title': title,
-        'actors': result.actors,
-        'type': result.type,
-        'director': result.director,
-        'rating': result.rating,
-        'category': result.listed_in,
-        'description': result.description,
-        'release_year': result.release_year,
-        'duration': result.duration,
-    }
+    if not result:
+        abort(400, 'No titles found')
 
+    # resp = {
+    #     'title': title,
+    #     'actors': result.actors,
+    #     'type': result.type,
+    #     'director': result.director,
+    #     'rating': result.rating,
+    #     'category': result.listed_in,
+    #     'description': result.description,
+    #     'release_year': result.release_year,
+    #     'duration': result.duration,
+    # }
+    resp = [row.to_dict() for row in result]
     return resp
 
 
