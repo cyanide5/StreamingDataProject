@@ -14,18 +14,21 @@ logger = logging.getLogger(__name__)
 title_parser = reqparse.RequestParser()
 report_parser = reqparse.RequestParser()
 
-body = api.model('Title', {
-    'title': fields.String(example='A Movie Title', required=True),
-    'type': fields.String(example='Movie', required=True),
-    'director': fields.String(example='Brent Maddock'),
-    'actors': fields.String(example='Matt Daemon'),
-    'country': fields.String(example='United States'),
-    'release_year': fields.String(example='1991', required=True),
-    'rating': fields.String(example='TV-G', required=True),
-    'duration': fields.String(example='82 min', required=True),
-    'listed_in': fields.String(example='Documentaries', required=True),
-    'description': fields.String(example='A movie about a person', required=True)
-})
+body = api.model(
+    'Title',
+    {
+        'title': fields.String(example='A Movie Title', required=True),
+        'type': fields.String(example='Movie', required=True),
+        'director': fields.String(example='Brent Maddock'),
+        'actors': fields.String(example='Matt Daemon'),
+        'country': fields.String(example='United States'),
+        'release_year': fields.String(example='1991', required=True),
+        'rating': fields.String(example='TV-G', required=True),
+        'duration': fields.String(example='82 min', required=True),
+        'listed_in': fields.String(example='Documentaries', required=True),
+        'description': fields.String(example='A movie about a person', required=True),
+    },
+)
 
 
 @api.route('/title/details/')
@@ -73,15 +76,30 @@ class TitleDetailsResource(Resource):
 @api.response(200, "You did it!")
 @api.response(400, "Unsupported request")
 class ReportResource(Resource):
-    """
-    """
+    """ """
 
     # Sort (assuming front-end report has an anchor column
-    report_parser.add_argument('sort_by', type=str, choices=['type', 'title', 'director',
-                                                             'actors', 'country', 'release_year', 'rating',
-                                                             'duration', 'listed_in'], location='args', required=True)
+    report_parser.add_argument(
+        'sort_by',
+        type=str,
+        choices=[
+            'type',
+            'title',
+            'director',
+            'actors',
+            'country',
+            'release_year',
+            'rating',
+            'duration',
+            'listed_in',
+        ],
+        location='args',
+        required=True,
+    )
 
-    report_parser.add_argument('sort_dir', type=str, choices=['asc', 'desc'], location='args', required=True)
+    report_parser.add_argument(
+        'sort_dir', type=str, choices=['asc', 'desc'], location='args', required=True
+    )
 
     # Pagination (assuming front-end report pagination will start with 0 then increment up as needed)
     report_parser.add_argument('start', type=int, location='args', required=True)
@@ -93,10 +111,12 @@ class ReportResource(Resource):
     @api.expect(report_parser)
     def get(self):
         args = report_parser.parse_args()
-        report_data = report(sort_column=args['sort_by'],
-                             sort_dir=args['sort_dir'],
-                             page_length=args['page_length'],
-                             start=args['start'],
-                             filter_by=args['filter_by'])
+        report_data = report(
+            sort_column=args['sort_by'],
+            sort_dir=args['sort_dir'],
+            page_length=args['page_length'],
+            start=args['start'],
+            filter_by=args['filter_by'],
+        )
 
         return report_data

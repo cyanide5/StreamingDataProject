@@ -12,4 +12,3 @@ def add_title(fields):
 
 def update_title(title, fields):
     return
-

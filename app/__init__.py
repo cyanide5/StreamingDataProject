@@ -22,7 +22,7 @@ api = Api(
     title="Video Streaming Microservices",
     version=__version__,
     description=f'Its a service!',
-    catch_all_404s=True
+    catch_all_404s=True,
 )
 
 app.register_blueprint(blueprint)
@@ -30,4 +30,3 @@ app.register_blueprint(blueprint)
 api.add_namespace(netflix_v1)
 api.add_namespace(hulu_v1)
 api.add_namespace(agg_v1)
-

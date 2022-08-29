@@ -1,4 +1,3 @@
-
 import logging
 
 from flask_restx import Namespace, Resource
@@ -11,8 +10,6 @@ api = Namespace("v1/agg", description="netflix data")
 @api.response(200, "You did it!")
 @api.response(400, "Unsupported request")
 class RatingsAggResource(Resource):
-
     @api.doc(responses={500: '{column} is not a supported agg type'})
     def get(self):
         return agg_data('taco')
-

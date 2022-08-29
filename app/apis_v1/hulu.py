@@ -7,7 +7,9 @@ api = Namespace("v1/hulu", description="hulu data")
 logger = logging.getLogger(__name__)
 
 parser = reqparse.RequestParser()
-parser.add_argument('rating', type=str, required=True, case_sensitive=False, location='form')
+parser.add_argument(
+    'rating', type=str, required=True, case_sensitive=False, location='form'
+)
 
 
 @api.response(200, "You did it!")

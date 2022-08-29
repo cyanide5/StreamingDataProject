@@ -23,4 +23,3 @@ class Netflix(Base, SerializerMixin):
     duration = Column(String(50))
     listed_in = Column(String(500))
     description = Column(String(500))
-
