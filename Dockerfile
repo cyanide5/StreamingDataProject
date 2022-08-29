@@ -12,4 +12,4 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
+CMD exec gunicorn --bind :8000 --workers 1 --threads 8 app:app

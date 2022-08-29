@@ -1,5 +1,5 @@
 runtime: python37
-entrypoint: gunicorn -b :$PORT app:app
+entrypoint: gunicorn -b :8000 app:app
 
 env_variables:
   INSTANCE_UNIX_SOCKET: /cloudsql/majestic-trail-36070:us-central1:streaming-data-project
