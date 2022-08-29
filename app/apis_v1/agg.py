@@ -12,4 +12,4 @@ api = Namespace("v1/agg", description="netflix data")
 class RatingsAggResource(Resource):
     @api.doc(responses={500: '{column} is not a supported agg type'})
     def get(self):
-        return agg_data('taco')
+        return agg_data('rating')
