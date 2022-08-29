@@ -1,17 +1,15 @@
-FROM python:3.8.3-slim
+FROM python:3
+
+COPY requirements.txt ./
+
+# Install production dependencies.
+RUN set -ex; \
+    pip install -r requirements.txt; \
+    pip install gunicorn
+
+# Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2 \
-
-
-RUN pip install --upgrade pip
-RUN pip install pipenv
-RUN pipenv install --deploy --system
-
-CMD exec gunicorn --bind 0.0.0.0:5000 --workers 1 --worker-class uvicorn.workers.UvicosssrnWorker  --threads 8 app.main:app
-
-CMD gunicorn --bind 0.0.0.0:5000 run:app
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app

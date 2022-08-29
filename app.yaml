@@ -1,0 +1,8 @@
+runtime: python37
+entrypoint: gunicorn -b :$PORT app:app
+
+env_variables:
+  INSTANCE_UNIX_SOCKET: /cloudsql/majestic-trail-36070:us-central1:streaming-data-project
+  DB_USER: streaming_admin
+  DB_PASS: password
+  DB_NAME: streaming_services

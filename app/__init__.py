@@ -9,6 +9,8 @@ from app.apis_v1.hulu import api as hulu_v1
 
 __version__ = '1.0.0'
 
+from connect import connect_with_connector
+
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
@@ -16,6 +18,7 @@ URL_PREFIX = "/xStreamServices"
 apidoc.url_prefix = URL_PREFIX
 blueprint = Blueprint('api', __name__, url_prefix=URL_PREFIX)
 
+connect_with_connector()
 
 api = Api(
     blueprint,
