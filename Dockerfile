@@ -3,7 +3,7 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN apt-get update \
+RUN sudo apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2 \
 
