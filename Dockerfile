@@ -3,8 +3,7 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN apk update
-RUN apk add postgresql-dev gcc python3-dev musl-dev
+RUN apt-get install postgresql-dev
 
 RUN pip install --upgrade pip
 RUN pip install pipenv
