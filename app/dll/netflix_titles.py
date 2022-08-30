@@ -9,7 +9,11 @@ session = Session()
 
 
 def get_details(title):
-    query = session.query(Netflix).filter(func.lower(Netflix.title).contains(func.lower(title))).limit(100)
+    query = (
+        session.query(Netflix)
+        .filter(func.lower(Netflix.title).contains(func.lower(title)))
+        .limit(100)  # this could be expanded to show more, or less, results as needed (intake from payload?)
+    )
     result = query.all()  # .first()
 
     if not result:
@@ -50,7 +54,12 @@ def insert_new_title(obj):
         )
 
     except Exception():
+        # no specific exception, this is only to be viewed as an example as it will likely never be triggered.
         session.rollback()
+        abort(
+            500,
+            f'Unable to add {obj["title"]}',
+        )
 
     session.commit()
 
