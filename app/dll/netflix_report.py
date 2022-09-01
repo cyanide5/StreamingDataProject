@@ -17,3 +17,4 @@ def get_report_data(sort_column, sort_dir, page_length, start, filter_by):
     resp = [row.to_dict() for row in paginated_query]
 
     return resp
+
